@@ -1,6 +1,5 @@
 # Hd-Notes
-
-> A high-definition note‑taking web app built with the **MERN stack**
+A high-definition note‑taking web app built with the **MERN stack**
 
 ---
 
