@@ -45,9 +45,8 @@ A high-definition note‑taking web app built with the **MERN stack**
 
   * Listing notes
   * Editing/creating notes
-  * Searching with tags
-  * Uploading images
-
+  * Navbar/Footer pages
+ 
 ---
 
 ## 📁 Folder Structure
