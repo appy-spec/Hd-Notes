@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -9,18 +10,18 @@ function Footer() {
       <div className="container">
         <div className="row justify-content-center mb-2">
           <div className="col-auto">
-            <a href="/" className="text-muted mx-2 text-decoration-none">
+            <Link to="/" className="text-muted mx-2 text-decoration-none">
               Home
-            </a>
-            <a href="/signup" className="text-muted mx-2 text-decoration-none">
+            </Link>
+            <Link to="/signup" className="text-muted mx-2 text-decoration-none">
               SignUp
-            </a>
-            <a href="/login" className="text-muted mx-2 text-decoration-none">
+            </Link>
+            <Link to="/login" className="text-muted mx-2 text-decoration-none">
               Login
-            </a>
-            <a href="/dashboard" className="text-muted mx-2 text-decoration-none">
+            </Link>
+            <Link to="/dashboard" className="text-muted mx-2 text-decoration-none">
               Dashboard
-            </a>
+            </Link>
           </div>
         </div>
         <div>
