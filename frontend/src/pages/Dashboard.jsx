@@ -4,6 +4,7 @@ import { FaTrash, FaPen } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 function Dashboard() {
 
@@ -15,7 +16,7 @@ function Dashboard() {
     const verifyUser = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/auth/verifyuser",
+          `${API}/api/auth/verifyuser`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -42,7 +43,7 @@ function Dashboard() {
 
   const getNotes = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/notes/", {
+      const response = await axios.get(`${API}/api/notes/`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
@@ -69,7 +70,7 @@ function Dashboard() {
     
      try {
         const response = await fetch(
-          "http://localhost:3000/api/notes/",
+          `${API}/api/notes/`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -101,7 +102,7 @@ function Dashboard() {
 
      try {
         const response = await fetch(
-          `http://localhost:3000/api/notes/${id}`,
+          `${API}/api/notes/${id}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
