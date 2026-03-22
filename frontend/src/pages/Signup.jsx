@@ -5,6 +5,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 function Signup() {
   const [dob, setDob] = useState(null);
@@ -62,7 +63,7 @@ function Signup() {
 
     if (!loading) {
       try {
-        const response = await fetch("http://localhost:3000/api/auth/getotp", {
+        const response = await fetch(`${API}/api/auth/getotp`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -81,7 +82,7 @@ function Signup() {
       }
     } else {
       try {
-        const response = await fetch("http://localhost:3000/api/auth/signup", {
+        const response = await fetch(`${API}/api/auth/signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
