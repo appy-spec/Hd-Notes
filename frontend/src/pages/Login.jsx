@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ function Login() {
    if (!email) return toast.error("Email is required");
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/getotp", {
+      const res = await fetch(`${API}/api/auth/getotp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -56,7 +57,7 @@ function Login() {
     if (!email || !otp) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/login", {
+      const res = await fetch(`{${API}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
