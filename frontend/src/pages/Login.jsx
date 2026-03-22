@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_API_URL;
 
 function Login() {
@@ -232,9 +232,9 @@ function Login() {
                         style={{ fontSize: "0.87rem", textAlign: "center" }}
                       >
                         Need an account??{" "}
-                        <a href="/signup">
+                        <Link to="/signup">
                           <b>Create one</b>
-                        </a>
+                        </Link>
                       </p>
                     </form>
                   </div>
