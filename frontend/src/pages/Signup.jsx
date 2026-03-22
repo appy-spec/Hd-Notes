@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_API_URL;
 
 function Signup() {
@@ -313,7 +313,7 @@ function Signup() {
                         style={{ fontSize: "0.87rem", textAlign: "center" }}
                       >
                         Already have an account??{" "}
-                        <a href="/login">
+                        <a Link="/login">
                           <b>Login</b>
                         </a>
                       </p>
