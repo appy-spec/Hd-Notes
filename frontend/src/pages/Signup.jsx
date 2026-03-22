@@ -313,9 +313,9 @@ function Signup() {
                         style={{ fontSize: "0.87rem", textAlign: "center" }}
                       >
                         Already have an account??{" "}
-                        <a Link="/login">
+                        <Link to="/login">
                           <b>Login</b>
-                        </a>
+                        </Link>
                       </p>
                     </form>
                   </div>
