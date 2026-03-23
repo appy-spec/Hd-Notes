@@ -3,7 +3,7 @@ dotenv.config();
 
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1000;
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Database connection failed", err)
 });
 
-app.listen(port, () => console.log("Server running on port 3000"));
+app.listen(port, () => console.log("Server running on port 1000"));
 
 // get the auth routes
 
