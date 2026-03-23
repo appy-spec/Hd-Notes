@@ -178,30 +178,28 @@ function Login() {
                           className="text-muted justify-content-start mt-2"
                           style={{ fontSize: "0.87rem" }}
                         >
-                          <a
-                            href="#"
+                          <button
                             type="button"
                             onClick={handleSendOtp}
                             className="btn btn-link p-0"
                             disabled={!email}
                           >
                             Send OTP
-                          </a>
+                          </button>
                         </p>
                       ) : (
                         <p
                           className="text-muted justify-content-start mt-2"
                           style={{ fontSize: "0.87rem" }}
                         >
-                          <a
-                            href="#"
+                          <button
                             type="button"
                             onClick={handleSendOtp}
                             className="btn btn-link p-0"
                             disabled={!email}
                           >
                             Resend OTP
-                          </a>
+                          </button>
                         </p>
                       )}
 
