@@ -137,7 +137,7 @@ function Dashboard() {
           {/* Hero Header */}
           <section className="text-center mb-5 mt-5">
             <h4 className="display-3 fw-bold text-primary">
-              Welcome to Your Dashboard
+              Dashboard
             </h4>
             <p className="lead text-muted">
               Create, manage, and review your notes below.
