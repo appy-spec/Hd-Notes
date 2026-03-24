@@ -5,6 +5,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, Link } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 const API = import.meta.env.VITE_API_URL;
 
 function Signup() {
@@ -14,6 +15,7 @@ function Signup() {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [loader, setloader] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,7 +45,7 @@ function Signup() {
 
     form.addEventListener("submit", submitHandler);
     return () => form.removeEventListener("submit", submitHandler);
-  }, [dob]); 
+  }, [dob]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +65,7 @@ function Signup() {
 
     if (!loading) {
       try {
+        setloader(true);
         const response = await fetch(`${API}/api/auth/getotp`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -76,12 +79,15 @@ function Signup() {
         } else {
           toast.success("OTP sent successfully!");
           setLoading(true);
+          setloader(false);
         }
       } catch (err) {
+        setloader(false);
         toast.error(err.message);
       }
     } else {
       try {
+        setloader(true);
         const response = await fetch(`${API}/api/auth/signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -94,10 +100,12 @@ function Signup() {
           throw new Error(errData.message || "Failed to sign up");
         } else {
           toast.success("Signup successfully!");
+          setloader(false);
           setLoading(false);
           navigate("/dashboard");
         }
       } catch (err) {
+        setloader(false);
         setLoading(false);
         toast.error(err.message);
       }
@@ -108,8 +116,7 @@ function Signup() {
     setDob(date);
     if (date) {
       setShowError(false);
-    }
-    else{
+    } else {
       setShowError(true);
     }
   };
@@ -274,9 +281,27 @@ function Signup() {
                       </div>
 
                       {!loading ? (
-                        <button type="submit" className="btn btn-primary w-100">
-                          Get OTP
-                        </button>
+                        loader ? (
+                          <button
+                            type="submit"
+                            className="btn btn-primary w-100"
+                          >
+                            <BeatLoader
+                              color="#ffffff"
+                              loading
+                              margin={2}
+                              size={11}
+                              speedMultiplier={1}
+                            />
+                          </button>
+                        ) : (
+                          <button
+                            type="submit"
+                            className="btn btn-primary w-100"
+                          >
+                            Get OTP
+                          </button>
+                        )
                       ) : (
                         <>
                           <div className="form-group mb-3 text-center">
@@ -300,12 +325,27 @@ function Signup() {
                               Otp is required
                             </div>
                           </div>
-                          <button
-                            type="submit"
-                            className="btn btn-primary w-100"
-                          >
-                            Sign Up
-                          </button>
+                          {loader ? (
+                            <button
+                              type="submit"
+                              className="btn btn-primary w-100"
+                            >
+                              <BeatLoader
+                                color="#ffffff"
+                                loading
+                                margin={2}
+                                size={11}
+                                speedMultiplier={1}
+                              />
+                            </button>
+                          ) : (
+                            <button
+                              type="submit"
+                              className="btn btn-primary w-100"
+                            >
+                              Sign Up
+                            </button>
+                          )}
                         </>
                       )}
                       <p
