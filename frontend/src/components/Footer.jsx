@@ -8,21 +8,8 @@ function Footer() {
       style={{ backgroundColor: "#f8f9fa" }}
     >
       <div className="container">
-        <div className="row justify-content-center mb-2">
-          <div className="col-auto">
-            <Link to="/" className="text-muted mx-2 text-decoration-none">
-              Home
-            </Link>
-            <Link to="/signup" className="text-muted mx-2 text-decoration-none">
-              SignUp
-            </Link>
-            <Link to="/login" className="text-muted mx-2 text-decoration-none">
-              Login
-            </Link>
-            <Link to="/dashboard" className="text-muted mx-2 text-decoration-none">
-              Dashboard
-            </Link>
-          </div>
+        <div className="row justify-content-center mb-1">
+          <small style={{margin:"0%"}}>By Rahul Patel</small>
         </div>
         <div>
           <small>
