@@ -12,19 +12,21 @@ import Homepage from "./pages/Homepage";
 export default function App() {
  
   return (
-     <Router>
-     
+    <Router>
+      <div className="d-flex flex-column min-vh-100">
         <Navbar />
-       
+
+        <main className="flex-grow-1 d-flex">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
           </Routes>
-       
+        </main>
+
         <Footer />
-   
+      </div>
     </Router>
   );
 }
