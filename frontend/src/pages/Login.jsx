@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_API_URL;
+import { BeatLoader } from "react-spinners";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,12 +11,13 @@ function Login() {
   const [check, setCheck] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const form = document.querySelector(".needs-validation");
     if (!form) return;
-  
+
     const submitHandler = (event) => {
       if (!form.checkValidity()) {
         event.preventDefault();
@@ -23,16 +25,17 @@ function Login() {
       }
       form.classList.add("was-validated");
     };
-  
+
     form.addEventListener("submit", submitHandler);
     return () => form.removeEventListener("submit", submitHandler);
   }, []);
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
-   if (!email) return toast.error("Email is required");
+    if (!email) return toast.error("Email is required");
 
     try {
+      setLoader(true);
       const res = await fetch(`${API}/api/auth/getotp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -46,9 +49,11 @@ function Login() {
       toast.success("OTP sent successfully!");
       setOtpSent(true);
       setLoading(true);
+      setLoader(false);
     } catch (err) {
       toast.error(err.message || "Error sending OTP");
       setOtpSent(false);
+      setLoader(false);
     }
   };
 
@@ -57,6 +62,7 @@ function Login() {
     if (!email || !otp) return;
 
     try {
+      setLoader(true);
       const res = await fetch(`${API}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,8 +75,10 @@ function Login() {
       }
       toast.success("Logged in successfully!");
       setLoading(true);
+      setLoader(false);
       navigate("/dashboard");
     } catch (err) {
+      setLoader(false);
       toast.error(err.message || "Login failed");
     }
   };
@@ -127,7 +135,7 @@ function Login() {
                     <form
                       className="form-horizontal w-80 form-container needs-validation"
                       onSubmit={otpSent ? handleSignIn : handleSendOtp}
-                      noValidate 
+                      noValidate
                     >
                       <div className="form-group mb-3 text-center">
                         <label
@@ -221,9 +229,21 @@ function Login() {
                         </span>
                       </p>
 
-                      <button type="submit" className="btn btn-primary w-100">
-                        Log In
-                      </button>
+                      {loader ? (
+                        <button type="submit" className="btn btn-primary w-100">
+                           <BeatLoader
+                              color="#ffffff"
+                              loading
+                              margin={2}
+                              size={11}
+                              speedMultiplier={1}
+                            />
+                        </button>
+                      ) : (
+                        <button type="submit" className="btn btn-primary w-100">
+                          Log In
+                        </button>
+                      )}
 
                       <p
                         className="text-muted justify-content-start mt-3"
