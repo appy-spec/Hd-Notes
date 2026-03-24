@@ -143,8 +143,7 @@ function Dashboard() {
               Create, manage, and review your notes below.
             </p>
             <h6 className="text-secondary">
-              Hi, <span className="text-dark fw-bold">{user.name}</span>{" "}
-              <span className="text-dark">({user.email})</span>{" "}
+              Hi, <span className="text-dark fw-bold">{user.name}</span>
             </h6>
           </section>
 
