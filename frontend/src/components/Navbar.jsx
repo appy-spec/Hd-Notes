@@ -31,7 +31,13 @@ function Navbar() {
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Show logo only on homepage and dashboard */}
         {(isHome || isDashboard) && (
-          <img src="/assets/logo.svg" alt="Logo" style={{ height: "1.5rem" }} />
+          <Link to="/">
+            <img
+              src="/assets/logo.svg"
+              alt="Logo"
+              style={{ height: "1.5rem" }}
+            />
+          </Link>
         )}
 
         <div className="d-flex gap-3">
