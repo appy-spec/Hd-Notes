@@ -119,7 +119,7 @@ function Dashboard() {
       {loader ? (
         <div className="w-100 d-flex flex-column justify-content-center align-items-center text-center">
           <h5 className="display-3 fw-bold text-primary mb-4">
-            Loading to Your Dashboard
+            Loading Your Dashboard
           </h5>
 
           <BeatLoader
