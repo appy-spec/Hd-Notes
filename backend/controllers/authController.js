@@ -1,24 +1,29 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-// const nodemailer = require("nodemailer");
-const sgMail = require("@sendgrid/mail");
+const nodemailer = require("nodemailer");
+// const sgMail = require("@sendgrid/mail");
 const User = require("../models/user");
 
 const otpStore = new Map();
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// const transporter = nodemailer.createTransport({
-//     host: "smtp.gmail.com",
-//     port: 465,
-//     secure: true,
-//     auth: {
-//         user: process.env.EMAIL_USER,
-//         pass: process.env.EMAIL_PASS,
-//     },
-//     // tls: {
-//     //    rejectUnauthorized: false,
-//     // },
-// });
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+
+    pool: true,
+    maxConnections: 5,
+
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
+});
 
 const generateOTP = () =>
     Math.floor(100000 + Math.random() * 900000).toString();
@@ -44,24 +49,32 @@ module.exports.getotp = async(req, res) => {
         }
 
         const generatedOtp = generateOTP();
-        console.log("Generated OTP Successfully");
         otpStore.set(email, generatedOtp);
 
-        await sgMail.send({
-              to: email,
-              from: process.env.EMAIL_USER,
-              subject: "OTP Verification",
-              text: `Your OTP is: ${generatedOtp}`,
-        });
-
-        // await transporter.sendMail({
-        //     from: process.env.EMAIL_USER,
-        //     to: email,
-        //     subject: "OTP Verification",
-        //     text: `Your OTP for Hd-Notes is: ${generatedOtp}`,
+        // await sgMail.send({
+        //       to: email,
+        //       from: process.env.EMAIL_USER,
+        //       subject: "OTP Verification",
+        //       text: `Your OTP is: ${generatedOtp}`,
         // });
-        
+
         res.json({ message: "OTP sent" });
+
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: "OTP Verification",
+            text: `Your OTP for Hd-Notes is: ${generatedOtp}`,
+        })
+        .then(() => {
+
+           console.log("Email send by node-mailer");
+        })
+        .catch((err) => {
+
+            console.error("Email Error:", err);
+        });
+        
     } catch (error) {
         console.log("Error sending OTP:", error);
         return res.status(500).json({ message: "Failed to send OTP" });
