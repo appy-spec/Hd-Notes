@@ -8,21 +8,34 @@ const otpStore = new Map();
 // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const transporter = nodemailer.createTransport({
+
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
+    requireTLS: true,
+    logger: true,
+    debug: true,
 
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
     },
+    
+    // host: "smtp.gmail.com",
+    // port: 587,
+    // secure: false,
 
-    pool: true,
-    maxConnections: 5,
+    // auth: {
+    //     user: process.env.EMAIL_USER,
+    //     pass: process.env.EMAIL_PASS,
+    // },
 
-    connectionTimeout: 30000,
-    greetingTimeout: 30000,
-    socketTimeout: 30000,
+    // pool: true,
+    // maxConnections: 5,
+
+    // connectionTimeout: 30000,
+    // greetingTimeout: 30000,
+    // socketTimeout: 30000,
 });
 
 const generateOTP = () =>
