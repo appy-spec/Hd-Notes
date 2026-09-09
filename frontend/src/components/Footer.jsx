@@ -8,9 +8,9 @@ function Footer() {
       style={{ backgroundColor: "#f8f9fa" }}
     >
       <div className="container">
-        <div className="row justify-content-center mb-1">
+        {/* <div className="row justify-content-center mb-1">
           <small style={{margin:"0%"}}>By Rahul Patel</small>
-        </div>
+        </div> */}
         <div>
           <small>
             &copy; {new Date().getFullYear()} <strong>NoteApp</strong>. All rights reserved.
