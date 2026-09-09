@@ -14,7 +14,12 @@ function Footer() {
         <div>
           <small>
             &copy; {new Date().getFullYear()} <strong>NoteApp</strong>. All rights reserved.
-            &nbsp; | &nbsp; Built with 💙 using MERN Stack
+            {/* &nbsp; | &nbsp; Built with 💙 using MERN Stack */}
+          </small>
+        </div>
+         <div>
+          <small>
+            Built with 💙 using MERN Stack
           </small>
         </div>
       </div>
